@@ -64,7 +64,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     )
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['phone_number']
+    REQUIRED_FIELDS = ['email']
 
     class Meta:
         verbose_name = 'пользователь'
