@@ -1,16 +1,20 @@
-
 from pathlib import Path
+import sys
+import os
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(BASE_DIR)
+sys.path.append(os.path.join(BASE_DIR,'apps'))
 
-SECRET_KEY = 'django-insecure-iw@w2y-1+t)4qws^@6-r-yrm94+5dmpeui1*mn_rx@xl%dy%b&'
+SECRET_KEY = config("SECRET_KEY")
 
-DEBUG = True
+DEBUG = config("DEBUG")
 
 ALLOWED_HOSTS = []
 
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -18,6 +22,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+PROJECT_APPS =[
+    'auths.apps.AuthsConfig'
+]
+
+INSTALLED_APPS = DJANGO_APPS+ PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
